@@ -29,7 +29,7 @@ class Assets {
   static const String firebaseIcon = 'assets/images/firebase.png';
   static const String patternAzul1 = 'assets/images/patternazul1.gif';
   static const String patternAzul2 = 'assets/images/patternazul2.gif';
-  static const String patternBrancoAzul = 'assets/images/patterbrancoazul.gif';
+  static const String patternBrancoAzul = 'assets/images/patternbrancoazul.gif';
   static const String patternVermelho = 'assets/images/patternvermelho.gif';
   static const String patternVerde = 'assets/images/patternverde.gif';
 

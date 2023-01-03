@@ -27,10 +27,15 @@ class _myAppState extends State<myApp> {
               fontFamily: 'roboto',
               fontSize: 25,
             ),
+            displaySmall: TextStyle(
+            color: DarkGreenColor,
+            fontFamily: 'roboto',
+            fontSize: 25,
+          ),
             bodyMedium: const TextStyle(
               color: Colors.black,
               fontFamily: 'roboto',
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
               fontSize: 18,
             ),
             bodySmall: const TextStyle(

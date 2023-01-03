@@ -1,11 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:portifolio/generated/assets.dart';
 import 'package:portifolio/layout-details/appColors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:animated_floating_buttons/animated_floating_buttons.dart';
+import 'package:portifolio/screens/JavaPage.dart';
+import 'package:portifolio/screens/KotlinPage.dart';
+import 'FlutterPage.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
     );
   }
+
   Widget floatGitHub() {
     return Container(
       child: FloatingActionButton(
@@ -36,6 +38,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
     );
   }
+
   showingSections() {
     return List.generate(5, (i) {
       final Toutched = i == TouchIndex;
@@ -44,7 +47,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       final size = Toutched ? 50.0 : 40.0;
 
       switch (i) {
-
         case 0:
           return PieChartSectionData(
             radius: radius,
@@ -121,7 +123,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 fontFamily: 'roboto',
                 fontWeight: FontWeight.w900,
                 fontSize: fontSize),
-
           );
 
         case 3:
@@ -162,7 +163,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 color: Colors.white,
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                    image: AssetImage(Assets.firebaseIcon), fit: BoxFit.contain),
+                    image: AssetImage(Assets.firebaseIcon),
+                    fit: BoxFit.contain),
               ),
             ),
             title: 'Firebase',
@@ -228,8 +230,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           ),
                           color: Colors.white,
                           image: const DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/fundo_triangular.png'),
+                              image: AssetImage(Assets.fundoTriangular),
                               fit: BoxFit.cover,
                               opacity: 0.6),
                         ),
@@ -259,7 +260,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 16, top: 18),
+                                padding:
+                                    const EdgeInsets.only(bottom: 16, top: 18),
                                 child: SizedBox(
                                   height: 200,
                                   width: 200,
@@ -283,6 +285,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               TouchIndex = pieTouchResponse
                                                   .touchedSection!
                                                   .touchedSectionIndex;
+
+                                              switch (TouchIndex) {
+
+                                                case 1:
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                        const JavaPage(),
+                                                      ));
+                                                  break;
+
+                                                case 2:
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const FlutterPage(),
+                                                      ));
+                                                  break;
+
+                                                  case 3:
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const KotlinPage(),
+                                                      ));
+                                                  break;
+                                              }
                                             });
                                           },
                                         )),
@@ -312,8 +344,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             alignment: AlignmentDirectional.topCenter,
                             child: CircleAvatar(
                               radius: 50,
-                              backgroundImage:
-                                  AssetImage('assets/images/perfil.png'),
+                              backgroundImage: AssetImage(Assets.imagesPerfil),
                             ),
                           ),
                         ],
@@ -337,9 +368,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     GridView.builder(
                       shrinkWrap: true,
                       itemCount: 4,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: MediaQuery.of(context).size.width < 450
+                            ? 2
+                            : MediaQuery.of(context).size.width < 600
+                                ? 3
+                                : MediaQuery.of(context).size.width < 900
+                                    ? 4
+                                    : MediaQuery.of(context).size.width < 1100
+                                        ? 5
+                                        : 6,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         List<AssetImage> asset = [
